@@ -68,7 +68,7 @@ module.exports = function(sequelize, DataTypes) {
         }) 
         .then(function(user){
           if (user === null){
-            throw new Error("Username does not exist");
+            throw new Error("There is no user with that email");
           }
           else if (user.checkPassword(password)){
             return user;

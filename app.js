@@ -63,7 +63,7 @@ app.get('/signup', function (req, res) {
 app.get('/profile', function(req,res){
   req.currentUser().then(function(dbUser) {
     if (dbUser) {
-      res.render('/profile', {ejsUser: dbUser});
+      res.render('users/profile', {ejsUser: dbUser});
     } else {
       res.redirect('/login');
     }
@@ -72,9 +72,11 @@ app.get('/profile', function(req,res){
 
 // login route
 app.post('/login', function (req, res) {
+  console.log(req.body.email, req.body.password);
+
   var email = req.body.email;
   var password = req.body.password;
-  db.User.authenticate(email,password)
+  db.User.authenticate(email, password)
     .then(function(dbUser) {
       if (dbUser) {
         req.login(dbUser);
