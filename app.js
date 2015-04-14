@@ -19,6 +19,10 @@ app.use(session({
   }
 }));
 
+// var to hide api key
+var env = process.env;
+var api_key = env.WORDNIK_API_KEY;
+
 // save user's data in a session
 app.use('/', function(req,res,next) {
   req.login = function(user) {
@@ -46,7 +50,7 @@ app.use(express.static('public'));
 // index/front page
 app.get('/', function(req,res) {
   // Word of the Day API
-  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=', function (error, response, body) {
+  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + api_key, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
       res.render("site/index", {jsonData: jsonData});
