@@ -130,7 +130,13 @@ app.get('/creations', function(req,res) {
 });
 
 app.get('/creations/new', function(req,res) {
-  res.render('creations/new');    
+  req.currentUser().then(function(dbUser) {
+    if (dbUser) {
+      res.render('creations/new');
+    } else {
+    res.redirect('/login');
+    }  
+  });
 });
 
 app.post('/creations', function(req,res) {
