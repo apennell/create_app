@@ -3,7 +3,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     db = require('./models'),
     session = require('express-session'),
-    env = require('env')(),
     app = express();
 
 app.set('view engine', 'ejs');
@@ -38,15 +37,26 @@ app.use('/', function(req,res,next) {
   next();
 });
 
+// // index/front page with env
+// app.get('/', function(req,res) {
+//   // Word of the Day API
+//   request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + process.env.wordnik, function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//       var jsonData = JSON.parse(body);
+//       //creates var for definition of WOD
+//       console.log("This is the first part of the body " + jsonData);
+//       console.log(body); // Show the HTML for the Google homepage.
+//       res.render("site/index", {jsonData: jsonData});
+//     }
+//   });
+// });
+
 // index/front page
 app.get('/', function(req,res) {
   // Word of the Day API
-  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + process.env.wordnik, function (error, response, body) {
+  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
-      //creates var for definition of WOD
-      console.log("This is the first part of the body " + jsonData);
-      console.log(body); // Show the HTML for the Google homepage.
       res.render("site/index", {jsonData: jsonData});
     }
   });
