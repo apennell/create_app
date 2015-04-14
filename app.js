@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     db = require('./models'),
     session = require('express-session'),
+    env = require('env')(),
     app = express();
 
 app.set('view engine', 'ejs');
@@ -17,7 +18,6 @@ app.use(session({
     uninitialize: true
   }
 }));
-
 
 // save user's data in a session
 app.use('/', function(req,res,next) {
@@ -40,7 +40,16 @@ app.use('/', function(req,res,next) {
 
 // index/front page
 app.get('/', function(req,res) {
-  res.render('site/index.ejs');
+  // Word of the Day API
+  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + process.env.wordnik, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var jsonData = JSON.parse(body);
+      //creates var for definition of WOD
+      console.log("This is the first part of the body " + jsonData);
+      console.log(body); // Show the HTML for the Google homepage.
+      res.render("site/index", {jsonData: jsonData});
+    }
+  });
 });
 
 // login view route
@@ -104,6 +113,27 @@ app.post('/signup', function(req,res){
 app.delete('/logout', function(req,res){
   req.logout();
   res.redirect('/login');
+});
+
+app.get('/creations', function(req,res) {
+  // find all the articles
+  db.Creation.all().then(function(creations) {
+    // render the article index template with articlesList, containing articles
+    res.render('creations/index', {creationsList: creations});
+  });
+});
+
+app.get('/creations/new', function(req,res) {
+  db.User.all().then(function(author) {
+    res.render('creations/new', {user: user});    
+  });
+});
+
+app.post('/creations', function(req,res) {
+  db.Creation.create(req.body.creation)
+    .then(function(creation) {
+      res.redirect('/creations');
+    });
 });
 
 app.listen(3000, function () {

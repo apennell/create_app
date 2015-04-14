@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta>
+  <title>Contribute</title>
+  <% include ../partials/head %>
+</head>
+<body>
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Contribute your work in response to a prompt.</h2>
+      <form method="post" action="/creations">
+        <br>
+        <input type="text" name="prompt" size="50" required="required" placeholder="Prompt"><br>
+        <input type="text" name="title" size="50" required="required" placeholder="Title"><br><br>
+        <textarea name="content" cols="50" rows="15" required="required" placeholder="Your creation here."></textarea><br>
+        <button>Save </button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  
+</body>
+</html>

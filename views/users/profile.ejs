@@ -3,32 +3,25 @@
 <head>
   <meta>
   <title>Create</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<!--   <link rel="stylesheet" type="text/css" href="../navbar-fixed-top.css"> -->
+  <% include ../partials/head %>
 </head>
 <body>
+  <header>
+    <% include ../partials/header %>
+  </header>
 
-<!--Start of Navigation Bar -->
-<div id="navbar" class="navbar-collapse collapse">
-  <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <ul class="nav navbar-nav navbar-right">
-    <li><a href="login">Log In</a></li>
-    <li><a href="/logout">Logout</a></li>
-    <li><a href="/signup">Sign Up</a></li>
-  </ul>
-</div>  <!-- End of Navigation Bar -->
+  <main>
+    <div class="container">
+      <h1>Hi <%= ejsUser.email %></h1>
+      <form method='POST' action='/logout?_method=DELETE'>
+        <button>Log out</button>
+      </form>
+    </div>
+  </main>
 
-  <div class="container">
-    <h1>Hi <%= ejsUser.email %></h1>
-    <form method='POST' action='/logout?_method=DELETE'>
-      <button>Log out</button>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>  
 
-    </form>
-  </div>
 </body>
 </html>

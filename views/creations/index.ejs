@@ -1,0 +1,18 @@
+<!--views/creations/index.ejs-->
+<!DOCTYPE HTML>
+<html>
+<body>
+  <h1>Creations</h1>
+  <% creationsList.forEach(function(creation) { %>
+  <div>
+    <a href="/creations/<%= creation.id %>"><strong><%= creation.title%></strong></a>
+    <div>
+      <%= creation.content %>
+    </div>
+    <br>
+  </div>
+  <% }) %>
+  <br><br>
+</body>
+</html>
+
