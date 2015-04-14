@@ -1,11 +1,12 @@
-var express = require('express'),
-    request = require('request'),
-    bodyParser = require('body-parser'),
-    db = require('./models'),
-    session = require('express-session'),
-    app = express();
+var express = require('express');
+var app = express();
+var request = require('request');
+var db = require('./models');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var methodOverride = require('method-override');
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -21,6 +22,7 @@ app.use(session({
 // save user's data in a session
 app.use('/', function(req,res,next) {
   req.login = function(user) {
+    // set value on session.userId
     req.session.userId = user.id;
   };
   req.currentUser = function() {
@@ -37,24 +39,14 @@ app.use('/', function(req,res,next) {
   next();
 });
 
-// // index/front page with env
-// app.get('/', function(req,res) {
-//   // Word of the Day API
-//   request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + process.env.wordnik, function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       var jsonData = JSON.parse(body);
-//       //creates var for definition of WOD
-//       console.log("This is the first part of the body " + jsonData);
-//       console.log(body); // Show the HTML for the Google homepage.
-//       res.render("site/index", {jsonData: jsonData});
-//     }
-//   });
-// });
+app.use(methodOverride('_method'));
+
+app.use(express.static('public'));
 
 // index/front page
 app.get('/', function(req,res) {
   // Word of the Day API
-  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=', function (error, response, body) {
+  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=20adc31860a60434ca00d005904088d2e4c32fbdc44eaccf5', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
       res.render("site/index", {jsonData: jsonData});
@@ -134,9 +126,7 @@ app.get('/creations', function(req,res) {
 });
 
 app.get('/creations/new', function(req,res) {
-  db.User.all().then(function(author) {
-    res.render('creations/new', {user: user});    
-  });
+  res.render('creations/new');    
 });
 
 app.post('/creations', function(req,res) {
