@@ -5,10 +5,7 @@
   <h1>Creations</h1>
   <% creationsList.forEach(function(creation) { %>
   <div>
-    <a href="/creations/<%= creation.id %>"><strong><%= creation.title%></strong></a>
-    <div>
-      <%= creation.content %>
-    </div>
+    <a href="/creations/<%= creation.id %>"><strong><%= creation.title %></strong></a>
     <br>
   </div>
   <% }) %>

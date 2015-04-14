@@ -122,26 +122,32 @@ app.delete('/logout', function(req,res){
 });
 
 app.get('/creations', function(req,res) {
-  // find all the articles
-  db.Creation.all().then(function(creations) {
+  // find all the creations
+  db.Creation.findAll().
+    then(function(creations) {
     // render the article index template with articlesList, containing articles
     res.render('creations/index', {creationsList: creations});
-  });
+    });
 });
 
+// new creation page
 app.get('/creations/new', function(req,res) {
   req.currentUser().then(function(dbUser) {
+    // if user is logged in, render new creation page
     if (dbUser) {
       res.render('creations/new');
     } else {
-    res.redirect('/login');
+      // redirect to login page if user isn't logged in
+      res.redirect('/login');
     }  
   });
 });
 
+// post creation to creation db
 app.post('/creations', function(req,res) {
   db.Creation.create(req.body.creation)
     .then(function(creation) {
+      // redirect to creation main page
       res.redirect('/creations');
     });
 });

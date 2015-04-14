@@ -14,6 +14,12 @@ module.exports = {
       content: {
         type: DataTypes.TEXT
       },
+      UserId: {
+        type: DataTypes.INTEGER
+      },
+      prompt: {
+        type: DataTypes.STRING
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
