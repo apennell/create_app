@@ -79,9 +79,9 @@ app.get('/signup', function (req, res) {
 // show user
 app.get('/profile', function(req,res){
   req.currentUser()
-    .then(function(dbUser) {
+    .then(function(dbUser, creations) {
       if (dbUser) {
-        res.render('users/profile', {ejsUser: dbUser});
+        res.render('users/profile', {ejsUser: dbUser, creationsList: creations});
       } else {
         res.redirect('/login');
       }
