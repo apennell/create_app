@@ -12,6 +12,7 @@
   <div class="container">
     <h1><%= creationToDisplay.title %></h1>
     <div>
+      <h4>Prompt: <%= creationToDisplay.prompt %></h4>
       <p><strong><a href="/creators/<%= creationToDisplay.User.id %>"><%= creationToDisplay.User.username %> </a></strong><p>
       <p><%= creationToDisplay.createdAt %></p>
       <p><%= creationToDisplay.content  %></p>
