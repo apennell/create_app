@@ -21,8 +21,10 @@
 
     <div class="container">
       <% creationsList.forEach(function(creation){ %>
-        <a href="/creations/<%= creation.id  %>"><%= creation.title  %></a>
+        <a href="/creations/<%= creation.id  %>"><%= creation.title  %></a><br>
+        <button>Edit</button><button>Delete</button> <br><br>
       <% }) %>
+
     </div>
 
   </main>

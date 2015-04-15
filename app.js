@@ -176,8 +176,8 @@ app.get('/creations/:id', function(req, res) {
 
 // show creators index page with all creators
 app.get('/creators', function(req, res) {
-  db.Creator.all()
-        .then(function(authors) {
+  db.User.findAll({include: [db.Creation]})
+        .then(function(users) {
             res.render('creators/index', {ejsUsers: users});
     });
 });
