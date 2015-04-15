@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
 
+
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -134,21 +135,27 @@ app.get('/creations', function(req,res) {
 
 // new creation page
 app.get('/creations/new', function(req,res) {
-  req.currentUser().then(function(dbUser) {
-    // if user is logged in, render new creation page
-    if (dbUser) {
-      res.render('creations/new');
-    } else {
-      // redirect to login page if user isn't logged in
-      res.redirect('/login');
-    }  
+  db.User.all().then(function(user) {
+    req.currentUser().then(function(dbUser) {
+      // if user is logged in, render new creation page
+      if (dbUser) {
+        res.render('creations/new', {
+          Users: user});
+      } else {
+        // redirect to login page if user isn't logged in
+        res.redirect('/login');
+      }  
+    });
   });
 });
 
 // post creation to creation db
 app.post('/creations', function(req,res) {
+  var creation = req.body.creation;
+  creation.UserId = req.session.userId;
   db.Creation.create(req.body.creation)
     .then(function(creation) {
+      console.log(creation);
       // redirect to creation main page
       res.redirect('/creations');
     });
