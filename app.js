@@ -126,7 +126,8 @@ app.delete('/logout', function(req,res){
 
 app.get('/creations', function(req,res) {
   // find all the creations
-  db.Creation.findAll()
+  db.Creation.findAll(
+    {include: [db.User]})
     .then(function(creations) {
     // render the article index template with articlesList, containing articles
     res.render('creations/index', {creationsList: creations});
@@ -166,7 +167,7 @@ app.get('/creations/:id', function(req, res) {
   db.Creation.find({where: {id: req.params.id}, include: db.User})
     .then(function(creation) {
       res.render('creations/creation', {
-        creationToDisplay: creations});
+        creationToDisplay: creation});
     });
 });
 
