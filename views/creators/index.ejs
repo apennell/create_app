@@ -1,0 +1,27 @@
+<!--views/creators/index.ejs-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Creations</title>
+    <% include ../partials/head %>
+</head>
+<body>
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <div class="container">
+    <h1>Creators</h1>
+    <% ejsUsers.forEach(function(user) { %>
+    <div>
+      <a href="/creators/<%= user.id %>"><strong><%= user.username %></strong></a>
+      <%= user.name %>
+      <br>
+    </div>
+    <% }) %>
+    <br><br>
+  </div>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+</html>
