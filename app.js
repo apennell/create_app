@@ -53,6 +53,7 @@ app.get('/', function(req,res) {
   request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + api_key, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
+      console.log(jsonData);
       res.render("site/index", {jsonData: jsonData});
     }
   });
@@ -76,12 +77,13 @@ app.get('/signup', function (req, res) {
 
 // show user
 app.get('/profile', function(req,res){
-  req.currentUser().then(function(dbUser) {
-    if (dbUser) {
-      res.render('users/profile', {ejsUser: dbUser});
-    } else {
-      res.redirect('/login');
-    }
+  req.currentUser()
+    .then(function(dbUser) {
+      if (dbUser) {
+        res.render('users/profile', {ejsUser: dbUser});
+      } else {
+        res.redirect('/login');
+      }
   });
 });
 
@@ -123,8 +125,8 @@ app.delete('/logout', function(req,res){
 
 app.get('/creations', function(req,res) {
   // find all the creations
-  db.Creation.findAll().
-    then(function(creations) {
+  db.Creation.findAll()
+    .then(function(creations) {
     // render the article index template with articlesList, containing articles
     res.render('creations/index', {creationsList: creations});
     });
@@ -151,6 +153,16 @@ app.post('/creations', function(req,res) {
       res.redirect('/creations');
     });
 });
+
+// // show individual contribution page
+app.get('/creations/:id', function(req, res) {
+  db.Creation.find({where: {id: req.params.id}, include: db.User})
+    .then(function(creation) {
+      res.render('creations/creation', {
+        creationToDisplay: creation});
+    });
+});
+
 
 app.listen(3000, function () {
   console.log("SERVER RUNNING");

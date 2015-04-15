@@ -1,15 +1,26 @@
 <!--views/creations/index.ejs-->
 <!DOCTYPE HTML>
 <html>
+<head>
+    <title>Creations</title>
+    <% include ../partials/head %>
+</head>
 <body>
-  <h1>Creations</h1>
-  <% creationsList.forEach(function(creation) { %>
-  <div>
-    <a href="/creations/<%= creation.id %>"><strong><%= creation.title %></strong></a>
-    <br>
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <div class="container">
+    <h1>Creations</h1>
+    <% creationsList.forEach(function(creation) { %>
+    <div>
+      <a href="/creations/<%= creation.id %>"><strong><%= creation.title %></strong></a>
+      <br>
+    </div>
+    <% }) %>
+    <br><br>
   </div>
-  <% }) %>
-  <br><br>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
 </body>
 </html>
-

@@ -2,19 +2,21 @@
 <html>
 <head>
   <meta>
-  <title>Contribute</title>
+  <title>Creation</title>
   <% include ../partials/head %>
 </head>
 <body>
   <header>
     <% include ../partials/header %>
   </header>
-
-  <div>
-    <p><strong>By <%= articleToDisplay.Author.first_name  %> <%= articleToDisplay.Author.last_name  %></strong><p>
-    <p><%= articleToDisplay.content  %></p>
+  <div class="container">
+    <h1><%= creationToDisplay.title %></h1>
+    <div>
+      <p><strong>By <%= creationToDisplay.User %> </strong><p>
+      <p><%= creationToDisplay.content  %></p>
+    </div>
+    <br><br><br>
   </div>
-  <br><br><br>
 
   <footer>
     <% include ../partials/footer %>
