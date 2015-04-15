@@ -1,0 +1,30 @@
+<!-- creator profile page -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta>
+  <title>Creator</title>
+  <% include ../partials/head %>
+</head>
+<body>
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <div class='container'>
+    <h1><%= ejsUser.username %></h1>
+    <div>
+      <p><%= ejsUser.name %><br><i><%= ejsUser.location %></i></p>
+    </div>
+  </div>
+  <div class='container'>
+    <% ejsUser.Creation.forEach(function(creation) {  %>
+    <p><a href="/creations/<%= creation.id  %>"><%= creation.title  %></a></p>
+    <% });  %>
+  </div>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>  
+
+</body>

@@ -166,11 +166,29 @@ app.get('/creations/:id', function(req, res) {
   db.Creation.find({where: {id: req.params.id}, include: db.User})
     .then(function(creation) {
       res.render('creations/creation', {
-        creationToDisplay: creation});
+        creationToDisplay: creations});
     });
 });
 
+// show creators index page with all creators
+app.get('/creators', function(req, res) {
+  db.Creator.all()
+        .then(function(authors) {
+            res.render('creators/index', {ejsUsers: users});
+    });
+});
 
-app.listen(3000, function () {
+// show creator profile page with all creations and info
+// TRYING TO GET THIS TO WORK; SOMETHING IN CREATOR.EJS LINE 21 IS UNDEFINED
+app.get('/creators/:id', function(req, res) {
+  db.User.find({where: {id: req.params.id}, include: db.Creation})
+    .then(function(user) {
+      res.render('creators/creator', {ejsUser: user});
+    });
+
+});
+
+
+app.listen(process.env.PORT || 3000, function () {
   console.log("SERVER RUNNING");
 });
