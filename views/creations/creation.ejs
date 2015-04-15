@@ -12,7 +12,8 @@
   <div class="container">
     <h1><%= creationToDisplay.title %></h1>
     <div>
-      <p><strong><%= creationToDisplay.User.username %> </strong><p>
+      <p><strong><a href="/creators/<%= creationToDisplay.User.id %>"><%= creationToDisplay.User.username %> </a></strong><p>
+      <p><%= creationToDisplay.createdAt %></p>
       <p><%= creationToDisplay.content  %></p>
     </div>
     <br><br><br>

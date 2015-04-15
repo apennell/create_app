@@ -180,7 +180,6 @@ app.get('/creators', function(req, res) {
 });
 
 // show creator profile page with all creations and info
-// TRYING TO GET THIS TO WORK; SOMETHING IN CREATOR.EJS LINE 21 IS UNDEFINED
 app.get('/creators/:id', function(req, res) {
   db.User.find({where: {id: req.params.id}, include: db.Creation})
     .then(function(user) {

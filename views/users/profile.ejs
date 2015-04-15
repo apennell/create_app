@@ -14,11 +14,9 @@
     <div class="container">
       <h1>Hi <%= ejsUser.name %>!</h1>
       <br>
+      <p><strong><a href="/creators/<%= ejsUser.id %>"> View Profile </a></strong><p>
+      <p><strong><a href="/creations/new">Contribute</a></strong><p>
       <br>
-      <br>
-      <form method='POST' action='/logout?_method=DELETE'>
-        <button>Log out</button>
-      </form>
     </div>
   </main>
 
