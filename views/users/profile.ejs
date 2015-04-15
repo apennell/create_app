@@ -18,6 +18,13 @@
       <p><strong><a href="/creations/new">Contribute</a></strong><p>
       <br>
     </div>
+
+    <div class="container">
+      <% creationsList.forEach(function(creation){ %>
+        <a href="/creations/<%= creation.id  %>"><%= creation.title  %></a>
+      <% }) %>
+    </div>
+
   </main>
 
   <footer>

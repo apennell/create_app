@@ -79,12 +79,15 @@ app.get('/signup', function (req, res) {
 // show user
 app.get('/profile', function(req,res){
   req.currentUser()
-    .then(function(dbUser, creations) {
-      if (dbUser) {
+    .then(function(dbUser) {
+    if (dbUser) {
+      db.Creation.findAll({where: {UserId: dbUser.id}})
+      .then(function(creations) {          
         res.render('users/profile', {ejsUser: dbUser, creationsList: creations});
-      } else {
-        res.redirect('/login');
-      }
+          });
+    } else {
+      res.redirect('/login');
+    }
   });
 });
 
@@ -185,9 +188,7 @@ app.get('/creators/:id', function(req, res) {
     .then(function(user) {
       res.render('creators/creator', {ejsUser: user});
     });
-
 });
-
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("SERVER RUNNING");
