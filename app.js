@@ -73,7 +73,12 @@ app.get('/login', function (req, res) {
 
 // sign up page
 app.get('/signup', function (req, res) {
-  res.render('users/signup');
+
+  // Define a variable error to be either an error that was passed as a query parameter, or false.
+  var err = req.query.err || false;
+
+  // Render the signup page and pass the value set to err.
+  res.render('users/signup', { err: err });
 });
 
 // show user
@@ -117,7 +122,12 @@ app.post('/signup', function(req,res){
   var location = req.body.location;
   db.User.createSecure(email, password, username, name, location)
     .then(function(user){
-      res.redirect('/profile');
+      // If user is string, as returned from createSecure, it means there was an error and that's what was returned as user
+      if(typeof user === 'string') {
+        res.redirect('/signup?err='+user)
+      } else {
+        res.redirect('/profile');
+      }
     });
 });
 

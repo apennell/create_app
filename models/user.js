@@ -49,23 +49,33 @@ module.exports = function(sequelize, DataTypes) {
       },
       createSecure: function(email, password, username, name, location) {
         if (password.length < 6) {
-          throw new Error("Password too short");
+          return encodeURI("Ack! Your password is too short!");
         } else if (password.length > 16) {
-          throw new Error("Password too long");
+          return encodeURI("Ack! Your password is too long!");
         } else {
           var _this = this;
           return this.count( {where: {email: email}})
           .then(function(userCount) {
             if (userCount >= 1) {
-              throw new Error("Accout already exists for this email.");
+
+              // Create variable err set to the error message and make the error message URL safe.
+              return encodeURI("Ack! Account already exists for that email.");
             } else {
-              return _this.create({
-                email: email,
-                passwordDigest: _this.encryptPassword(password),
-                username: username,
-                name: name,
-                location: location
-              });
+              return _this.count( {where: {username: username }})
+              .then(function(usernameCount) {
+                if (usernameCount >= 1) {
+                  return encodeURI("Ack! That username is already taken!");
+                } else {
+                  return _this.create({
+                    email: email,
+                    passwordDigest: _this.encryptPassword(password),
+                    username: username,
+                    name: name,
+                    location: location
+                  });
+
+                }
+              })
             }
           })
         }
