@@ -45,7 +45,7 @@ app.use('/', function(req,res,next) {
 
 app.use(methodOverride('_method'));
 
-app.use(express.static('public/LRodu103T8'));
+app.use(express.static(__dirname + '/public'));
 
 // index/front page
 app.get('/', function(req,res) {
@@ -54,7 +54,7 @@ app.get('/', function(req,res) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
       console.log(jsonData);
-      res.render("site/index.ejs", {jsonData: jsonData});
+      res.render("site/index.ejs", {jsonData: jsonData, pageTitle: "Home", isHomePage: true});
     }
   });
 });
@@ -172,7 +172,6 @@ app.post('/creations', function(req,res) {
   creation.UserId = req.session.userId;
   db.Creation.create(req.body.creation)
     .then(function(creation) {
-      console.log(creation);
       // redirect to creation main page
       res.redirect('/creations');
     });

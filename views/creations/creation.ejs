@@ -15,7 +15,14 @@
       <h4>Prompt: <%= creationToDisplay.prompt %></h4>
       <p><strong><a href="/creators/<%= creationToDisplay.User.id %>"><%= creationToDisplay.User.username %> </a></strong><p>
       <p><%= creationToDisplay.createdAt %></p>
-      <p><%= creationToDisplay.content  %></p>
+
+      <p>
+        <% creationToDisplay.content.split(/\n/).forEach(function(line) { %>
+        <br>
+        <p><%= line %></p>
+        <% }) %>
+      </p>
+
     </div>
     <br><br><br>
   </div>

@@ -1,11 +1,69 @@
 <!-- views/partials/head.ejs -->
 
+<html>
+<head>
+  <% var pageTitle = pageTitle || "" %>
+  <title>Create! - <%= pageTitle %></title>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <!-- Latest compiled and minified JavaScript -->
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <link rel="stylesheet" href="stylesheets/css/style.css">
 
-<style>
+</head> 
+<body>
 
-</style>
+<!-- If home page, render header masthead -->
+<% 
+var isHomePage = isHomePage || false;
+if(isHomePage) { 
+%>
+
+<header class="masthead">
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1><a href="http://imgur.com/NVbC7CY"><img src="http://i.imgur.com/NVbC7CY.png" title="source: imgur.com" /></a></h1>
+      </div>
+    </div>
+    </div>
+</header>
+
+<% } %>
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-custom navbar-inverse navbar-static-top" id="nav">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav nav-justified">
+          <li><a href="/">create</a></li>
+          <li><a href="/creations">Creations</a></li>
+          <li><a href="/creators">Creators</a></li>
+<!--           <li class="active"><a href="/creations/new"><strong>Contribute</strong></a></li> -->
+          <li><a href="/creations/new">Contribute</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/profile">Profile</a></li>
+              <li><a href="/login">Sign In</a></li>
+              <li><a href="/signup">Register</a></li>
+              <li>
+                <form method='POST' action='/logout?_method=DELETE'>
+                <button>Sign Out</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container -->
+</div><!--/.navbar -->
