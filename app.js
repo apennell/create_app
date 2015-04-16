@@ -54,7 +54,7 @@ app.get('/', function(req,res) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
       console.log(jsonData);
-      res.render("site/index.ejs", {jsonData: jsonData, pageTitle: "Home", isHomePage: true});
+      res.render("site/index.ejs", {jsonData: jsonData, pageTitle: "Home"});
     }
   });
 });
