@@ -9,6 +9,7 @@ var methodOverride = require('method-override');
 
 app.set("view engine", "ejs");
 
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 // create sessions
@@ -46,7 +47,7 @@ app.use('/', function(req,res,next) {
 
 app.use(methodOverride('_method'));
 
-app.use(express.static('public'));
+app.use(express.static('public/LRodu103T8'));
 
 // index/front page
 app.get('/', function(req,res) {
