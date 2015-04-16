@@ -48,24 +48,45 @@ module.exports = function(sequelize, DataTypes) {
         return hash;
       },
       createSecure: function(email, password, username, name, location) {
+
+        // Define an error object in case of error.
+        var error = {};
+        error.errors = [];
+        error.hasErrored = false;
+
         if (password.length < 6) {
-          return encodeURI("Ack! Your password is too short!");
-        } else if (password.length > 16) {
-          return encodeURI("Ack! Your password is too long!");
-        } else {
+          error.errors.push(encodeURI("Ack! Your password is too short!"));
+          error.hasErrored = true;
+        } 
+        if (password.length > 16) {
+            error.errors.push(encodeURI("Ack! Your password is too long!"));
+            error.hasErrored = true;
+        }
+        
           var _this = this;
           return this.count( {where: {email: email}})
           .then(function(userCount) {
             if (userCount >= 1) {
 
               // Create variable err set to the error message and make the error message URL safe.
-              return encodeURI("Ack! Account already exists for that email.");
-            } else {
+              error.errors.push(encodeURI("Ack! Account already exists for that email."));
+              error.hasErrored = true;
+            }
+              
               return _this.count( {where: {username: username }})
               .then(function(usernameCount) {
                 if (usernameCount >= 1) {
-                  return encodeURI("Ack! That username is already taken!");
-                } else {
+                  error.errors.push(encodeURI("Ack! That username is already taken!"));
+                  error.hasErrored = true;
+                }
+
+                // Check for errors. If error, return the error object. 
+                if(error.hasErrored) {
+                  return error;
+                }
+
+
+                  // This actually creates the user, but we'll only get here if no errors have occurred.
                   return _this.create({
                     email: email,
                     passwordDigest: _this.encryptPassword(password),
@@ -74,11 +95,10 @@ module.exports = function(sequelize, DataTypes) {
                     location: location
                   });
 
-                }
-              })
-            }
-          })
-        }
+                
+              }); // Closes the .then statement after the check for username
+            }); // Closes the .then where we check for email.
+        
       },
       authenticate: function(email, password) {
         // find a user in the DB

@@ -78,7 +78,11 @@ app.get('/signup', function (req, res) {
   var err = req.query.err || false;
 
   // Render the signup page and pass the value set to err.
-  res.render('users/signup', { err: err });
+  if(err !== false) {
+    res.render('users/signup', { err: err.split(":") });
+  } else {
+    res.render('users/signup', { err: false });
+  }
 });
 
 // show user
@@ -123,8 +127,8 @@ app.post('/signup', function(req,res){
   db.User.createSecure(email, password, username, name, location)
     .then(function(user){
       // If user is string, as returned from createSecure, it means there was an error and that's what was returned as user
-      if(typeof user === 'string') {
-        res.redirect('/signup?err='+user)
+      if(user.errors) {
+        res.redirect('/signup?err='+user.errors.join(":"));
       } else {
         res.redirect('/profile');
       }
