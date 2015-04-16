@@ -6,6 +6,7 @@ var Sequelize = require("sequelize");
 var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || "development";
 var config    = require(__dirname + '/../config/config.json')[env];
+
 // NEEDED FOR HEROKU ///////////
 if(config.use_env_variable){
   var db_info = process.env[config.use_env_variable].match(/([^:]+):\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
