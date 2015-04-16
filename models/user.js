@@ -63,41 +63,40 @@ module.exports = function(sequelize, DataTypes) {
             error.hasErrored = true;
         }
         
-          var _this = this;
-          return this.count( {where: {email: email}})
-          .then(function(userCount) {
-            if (userCount >= 1) {
+        var _this = this;
+        return this.count( {where: {email: email}})
+        .then(function(userCount) {
+          if (userCount >= 1) {
 
-              // Create variable err set to the error message and make the error message URL safe.
-              error.errors.push(encodeURI("Ack! Account already exists for that email."));
+            // Create variable err set to the error message and make the error message URL safe.
+            error.errors.push(encodeURI("Gah! Account already exists for that email."));
+            error.hasErrored = true;
+          }
+              
+          return _this.count( {where: {username: username }})
+          .then(function(usernameCount) {
+            if (usernameCount >= 1) {
+              error.errors.push(encodeURI("Shoot! That username is already taken!"));
               error.hasErrored = true;
             }
-              
-              return _this.count( {where: {username: username }})
-              .then(function(usernameCount) {
-                if (usernameCount >= 1) {
-                  error.errors.push(encodeURI("Ack! That username is already taken!"));
-                  error.hasErrored = true;
-                }
 
-                // Check for errors. If error, return the error object. 
-                if(error.hasErrored) {
-                  return error;
-                }
+          // Check for errors. If error, return the error object.
+            if(error.hasErrored) {
+              return error;
+            }
 
-
-                  // This actually creates the user, but we'll only get here if no errors have occurred.
-                  return _this.create({
-                    email: email,
-                    passwordDigest: _this.encryptPassword(password),
-                    username: username,
-                    name: name,
-                    location: location
-                  });
+          // This actually creates the user, but we'll only get here if no errors have occurred.
+          return _this.create({
+            email: email,
+            passwordDigest: _this.encryptPassword(password),
+            username: username,
+            name: name,
+            location: location
+          });
 
                 
-              }); // Closes the .then statement after the check for username
-            }); // Closes the .then where we check for email.
+          }); // Closes the .then statement after the check for username
+        }); // Closes the .then where we check for email.
         
       },
       authenticate: function(email, password) {

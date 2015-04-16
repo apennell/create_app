@@ -81,7 +81,7 @@ app.get('/signup', function (req, res) {
   if(err !== false) {
     res.render('users/signup', { err: err.split(":") });
   } else {
-    res.render('users/signup', { err: false });
+    res.render('users/signup', { err: false});
   }
 });
 

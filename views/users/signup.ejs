@@ -15,18 +15,18 @@
 
       <% if(err) { 
 
-        err.forEach(function(errorMessage) {
+
 
        %>
       <!--  If an error occurred, create an error div and display the message. -->
 
       <div class="error">
-        <%= errorMessage %>
+        <p>Wrong email or password. Please try again or sign up!</p>
       </div>
 
-      <% });  // Ends the foreach loop
+      <% // Ends the foreach loop
       } // Ends the if statement
-     %>
+      %>
       <h2>Please Sign Up</h2>
       <form method="POST" action="/signup">
         <input type="text" name="email" placeholder="Email"><br>
