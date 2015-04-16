@@ -6,9 +6,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
 
-
 app.set("view engine", "ejs");
-
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -56,7 +54,7 @@ app.get('/', function(req,res) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
       console.log(jsonData);
-      res.render("site/index", {jsonData: jsonData});
+      res.render("site/index.ejs", {jsonData: jsonData});
     }
   });
 });
