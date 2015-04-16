@@ -48,8 +48,10 @@ module.exports = function(sequelize, DataTypes) {
         return hash;
       },
       createSecure: function(email, password, username, name, location) {
-        if(password.length < 6) {
+        if (password.length < 6) {
           throw new Error("Password too short");
+        } else if (password.length > 16) {
+          throw new Error("Password too long");
         } else {
           var _this = this;
           return this.count( {where: {email: email}})
