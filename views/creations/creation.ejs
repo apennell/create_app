@@ -1,35 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta>
-  <title>Creation</title>
-  <% include ../partials/head %>
-</head>
-<body>
-  <header>
-    <% include ../partials/header %>
-  </header>
-  <div class="container">
-    <h1><%= creationToDisplay.title %></h1>
-    <div>
-      <h4>Prompt: <%= creationToDisplay.prompt %></h4>
-      <p><strong><a href="/creators/<%= creationToDisplay.User.id %>"><%= creationToDisplay.User.username %> </a></strong><p>
-      <p><%= creationToDisplay.createdAt %></p>
-
-      <p>
-        <% creationToDisplay.content.split(/\n/).forEach(function(line) { %>
-        <br>
-        <p><%= line %></p>
-        <% }) %>
-      </p>
-
-    </div>
-    <br><br><br>
-  </div>
-
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+<!-- views/creations/creation.ejs file -->
   
-</body>
-</html>
+<title>Create - Creation</title>
+
+<% include ../partials/head %>
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+  
+<!-- Begin page content -->
+<div class="divider" id="section1"></div>
+  
+<div class="container">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="page-header text-center">
+      <!-- show Word of Day -->
+      <h1><%= creationToDisplay.title %></h1>
+    </div>
+    
+    <p class="lead text-center">Prompt: <%= creationToDisplay.prompt %></p>
+
+    <p class="lead text-center"><strong><a href="/creators/<%= creationToDisplay.User.id %>"><%= creationToDisplay.User.username %> </a></strong><p>
+    <p class="lead text-center"><%= creationToDisplay.createdAt %></p>
+
+    <p>
+      <% creationToDisplay.content.split(/\n/).forEach(function(line) { %>
+      <br>
+      <p><%= line %></p>
+      <% }) %>
+    </p>
+
+  </div>
+</div>
+    
+<div class="divider" id="section2"></div>
+  
+<section class="bg-1">
+
+</section>
+  
+<div class="divider"></div>
+   
+<div class="container" id="section3">
+    <div class="col-sm-8 col-sm">
+      <div class="container">
+        Hi
+        <br><br>
+      </div>
+    </div><!--/col-->
+</div><!--/container-->
+
+<div class="divider"></div>
+  
+<section class="bg-3" id="section4">
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Join the create community</h2></div>
+</section>
+  
+</div><!--/wrap-->
+
+<% include ../partials/footer %>

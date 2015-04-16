@@ -54,7 +54,7 @@ app.get('/', function(req,res) {
     if (!error && response.statusCode == 200) {
       var jsonData = JSON.parse(body);
       console.log(jsonData);
-      res.render("site/index.ejs", {jsonData: jsonData, pageTitle: "Home"});
+      res.render("site/index.ejs", {jsonData: jsonData});
     }
   });
 });
@@ -65,7 +65,7 @@ app.get('/login', function (req, res) {
     if (user) {
       res.redirect('/profile');
     } else {
-      res.render('users/login');
+      res.render('users/login', {pageTitle: "Sign In"});
     }
   });
 });
@@ -125,7 +125,7 @@ app.post('/signup', function(req,res){
   var location = req.body.location;
   db.User.createSecure(email, password, username, name, location)
     .then(function(user){
-      // If user is string, as returned from createSecure, it means there was an error and that's what was returned as user
+      
       if(user.errors) {
         res.redirect('/signup?err='+user.errors.join(":"));
       } else {
@@ -198,7 +198,7 @@ app.get('/creators', function(req, res) {
 app.get('/creators/:id', function(req, res) {
   db.User.find({where: {id: req.params.id}, include: db.Creation})
     .then(function(user) {
-      res.render('creators/creator', {ejsUser: user});
+      res.render('creators/creator.ejs', {ejsUser: user});
     });
 });
 
