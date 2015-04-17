@@ -1,19 +1,42 @@
-<!-- views/creations.new.ejs -->
-  <title>Contribute</title>
-  <% include ../partials/head %>
+<!-- views/creations/new.ejs -->
 
-  <main>
-    <div class="container">
-      <h2>Share what you made!</h2>
-      <form method="post" action="/creations">
-        <br>
-        <input type="text" name="creation[prompt]" size="50" required="required" placeholder="Prompt"><br>
-        <input type="text" name="creation[title]" size="50" required="required" placeholder="Title"><br><br>
-        
-        <textarea name="creation[content]" cols="50" rows="15" required="required" placeholder="Your creation here."></textarea><br>
-        <button>Save </button>
-      </form>
+<title>Create - Contribute</title>
+
+<% include ../partials/head %>
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+  
+<!-- Begin page content -->
+<div class="divider" id="section1"></div>
+  
+<!-- top container -->
+<div class="container">
+  <div class="col-sm-10 col-sm-offset-1">
+    
+    <div class="page-header text-center">
+      <h1>share what you made!</h1>
     </div>
-  </main>
+    
+    <!-- new creation/contribution form -->
+    <form class="lead text-center" method="post" action="/creations"><br>
+      <input type="text" name="creation[prompt]" size="50" required="required" placeholder="Prompt"><br>
+      <input type="text" name="creation[title]" size="50" required="required" placeholder="Title"><br><br>
+      <textarea name="creation[content]" cols="50" rows="15" required="required" placeholder="Your creation here."></textarea><br><br>
+      <button class="btn">Save </button>
+    </form>
 
-    <% include ../partials/footer %>
+  </div>
+</div>
+    
+<div class="divider" id="section2"></div>
+
+<!-- bottom section with image and some text -->
+<section class="bg-3" id="section4">
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">join the create community</h2></div>
+</section>
+  
+</div><!--/wrap-->
+
+<% include ../partials/footer %>
+

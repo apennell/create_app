@@ -1,11 +1,13 @@
-@import url(http://fonts.googleapis.com/css?family=Kreon:400,700);
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700);
 
 html,
 body {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
   -webkit-font-smoothing: antialiased;
-  font: normal 14px arial,sans-serif;
+  font-family: 'Open+Sans', sans-serif;
+  font-size: 20px;
 }
 
 .row {
@@ -51,36 +53,74 @@ body {
   color:#efefef;
 }
 
-h1,h2,h3,h4 {
-  font-family: 'Kreon', serif;
+h1 {
+  font-family: 'Pacifico', cursive;
+}
+
+h3,h4 {
+  font-family: 'Open+Sans', sans-serif;
   vertical-align:middle;
 }
 
+h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
+}
+
+#word-of-day {
+  font-family: 'Open+Sans', sans-serif;
+  font-size: 75px;
+  font-weight: 400;
+}
+
+.list {
+  font-family: 'Open+Sans', sans-serif;
+  font-size: 24px;
+}
+
+.heading {
+  font-size: 100px;
+}
+
+.lead {
+  font-size: 30px;
+}
+
+#password {
+  font-size: 16px;
+}
+
+#creation {
+  margin: auto;
+}
+
+#username {
+  font-size: 70px;
+}
+
 header {
-  background: #f16251;
+  background: url('http://i.imgur.com/gwnIjhG.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   height:550px;
   color:#000000;
 }
 
 header h1,header h2,header h3 a,header a,header a:hover {
   color:#101010;
-  font-weight:800;
+  font-weight:700;
   text-decoration:none;
 }
 
 header h3 {
-  font-family: 'Kreon', serif;
+  font-family: 'Open+Sans', sans-serif;
   background: #ffcc33;
   padding:10px;
   border-radius:3px;
   font-size:34px;
   padding:12px 10px 6px 10px;
-}
-
-header .dropdown-menu {
-  top:74px;
-  background: #ffcc33;
-  border-width:0;
 }
 
 h1 {
@@ -94,19 +134,15 @@ h1 {
 }
 
 #nav.affix {
-   position: fixed;
-   top: 0;
-   z-index:10;
+  position: fixed;
+  top: 0;
+  z-index:10;
    -webkit-transition: all .6s ease-in-out;
-}
-
-#footer > .container {
-  
 }
 
 @media (min-width: 767px) {
   .navbar-nav.nav-justified > li{
-      float:none;
+    float:none;
   }
 }
 .navbar-nav {
@@ -115,10 +151,10 @@ h1 {
   
 /* customize nav style */
 .navbar-custom {
-    background-color: #2e2e2e;
-  font-weight:700;
-    text-transform:uppercase;
-    border-width:0;
+  background-color: #2e2e2e;
+  font-weight:400;
+  border-width:0;
+  font-size: 20px;
 }
 .navbar-custom  .navbar-nav>li>a {
   color: #ddd;
@@ -128,22 +164,32 @@ h1 {
 }
 .navbar-custom .dropdown-menu{
   right:0;
+  font-size: 18px;
 }
 .navbar-custom .navbar-nav>.dropdown>a .caret {
   border-top-color: #999;
   border-bottom-color: #999;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #999;
 }
 
 .navbar-collapse.in { /*3.0.2 bug workaround*/
-    overflow-y: visible;
+  overflow-y: visible;
 }
 
 .navbar-toggle {
   outline:0;
 }
 
+#cursive-nav {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-size: 30px;
+}
+
 .divider {
-  height:100px;
+  height: 50px;
 }
 
 .panel {
@@ -157,8 +203,8 @@ h1 {
 }
 
 #map-canvas {
-    width: 100%; 
-    height: 300px;
+  width: 100%; 
+  height: 300px;
   margin: 0;
   padding: 15px;
 }
@@ -176,7 +222,22 @@ h1 {
 .scroll-top a:link,.scroll-top a:visited {
   color:#222;
 } 
- 
+
+/* customize buttons*/
+.btn {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#logout {
+  background-color: white;
+  padding: 5px 19px 0 19px;
+  font-weight: 400;
+  font-size: 18px;
+}
 
 section {
   color: #ffffff;
@@ -187,7 +248,7 @@ section {
 }
 
 .bg-1 {
-  background: url('http://www.bootply.com/assets/example/bg_4.jpg') no-repeat center center fixed; 
+  background: url('http://i.imgur.com/cgEtgWJ.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -203,7 +264,7 @@ section {
 }
 
 .bg-3 {
-  background: url('http://www.bootply.com/assets/example/bg_6.jpg') no-repeat center center fixed; 
+  background: url('http://i.imgur.com/Se0jEOI.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

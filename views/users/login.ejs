@@ -1,21 +1,44 @@
 <!-- views/user/login.ejs -->
 
-  <title>Create</title>
-  <% include ../partials/head %>
+<title>Create - Sign In</title>
 
-  <main>
-    <div class="container">
-      <h2>Please Log In</h2>
-      <form method="post" action="/login">
-        <div>
-          <input type="text" name="email" placeholder="Email">
-        </div>
-        <div>
-          <input type="password" name="password" placeholder="Password">
-        </div>
-        <button>Login</button>
-      </form>
+<% include ../partials/head %>
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+  
+<!-- Begin page content -->
+<div class="divider" id="section1"></div>
+  
+<!-- top container -->
+<div class="container">
+  <div class="col-sm-10 col-sm-offset-1">
+    
+    <div class="page-header text-center">
+      <h1>please sign in</h1>
     </div>
-  </main>
+    
+    <!-- sign in form -->
+    <form class="lead text-center" method="post" action="/login">
+      <div>
+        <input type="text" name="email" placeholder="Email">
+      </div>
+      <div>
+        <input type="password" name="password" placeholder="Password">
+      </div>
+         <br><button class="btn">Login</button>
+      </form>
 
-    <% include ../partials/footer %>
+  </div>
+</div>
+    
+<div class="divider" id="section2"></div>
+
+<!-- bottom section with image and some text -->
+<section class="bg-3" id="section4">
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">join the create community</h2></div>
+</section>
+  
+</div><!--/wrap-->
+
+<% include ../partials/footer %>

@@ -15,7 +15,7 @@
     <h2>today's prompt</h2>
     <div class="page-header text-center">
       <!-- show Word of Day -->
-      <h1><%= jsonData.word %></h1>
+      <h1 id="word-of-day"><%= jsonData.word %></h1>
     </div>
     
     <p class="lead text-center">
@@ -26,7 +26,7 @@
         <%= jsonData.definitions[0].text %>
     </p>
     <p class="text-center">
-      <button><a href="creations/new">Contribute</a></button>
+      <button class="btn"><a href="creations/new">Contribute</a></button>
     </p>
   </div>
 </div>
@@ -34,14 +34,14 @@
 <div class="divider" id="section2"></div>
   
 <section class="bg-1">
-  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">What have you made today?</h2></div>
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">what have you made today?</h2></div>
 </section>
   
 <div class="divider"></div>
    
 <div class="container" id="section3">
     <div class="col-sm-8 col-sm-offset-2 text-center">
-      <h1>Use today's prompt to create!</h1>
+      <h1>use today's prompt to create!</h1>
 
       <hr>
         <h3>
@@ -54,7 +54,7 @@
 <div class="divider"></div>
   
 <section class="bg-3" id="section4">
-  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Join the create community</h2></div>
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">join the create community</h2></div>
 </section>
   
 <div class="continer bg-4">
@@ -62,7 +62,7 @@
      <div class="col-sm-4 col-xs-6">
       
         <div class="panel panel-default">
-          <div><img src="//placehold.it/620X250/565656/eee" class="img-responsive"></div>
+          <div><img src="http://i.imgur.com/MZ1dLhW.jpg" class="img-responsive"></div>
           <div class="panel-body">
             <a href="/creations"><p class="lead">Explore the creations</p></a>
           </div>
@@ -72,7 +72,7 @@
       <div class="col-sm-4 col-xs-6">
       
         <div class="panel panel-default">
-          <div class="panel-thumbnail"><img src="//placehold.it/620X250/ffcc33/444" class="img-responsive"></div>
+          <div class="panel-thumbnail"><img src="http://i.imgur.com/dBOOSqg.jpg" class="img-responsive"></div>
           <div class="panel-body">
             <a href="/creators"><p class="lead">Explore the creators</p></a>
           </div>
@@ -82,7 +82,7 @@
       <div class="col-sm-4 col-xs-6">
       
         <div class="panel panel-default">
-          <div class="panel-thumbnail"><img src="//placehold.it/620X250/f16251/444" class="img-responsive"></div>
+          <div class="panel-thumbnail"><img src="http://i.imgur.com/tL4xSe6.jpg" class="img-responsive"></div>
           <div class="panel-body">
             <p class="lead">Explore the prompts</p>
           </div>

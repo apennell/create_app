@@ -1,37 +1,58 @@
-<!-- views/users/signup.ejs -->
+  <!-- views/users/signup.ejs -->
   
 <title>Create - Register</title>
 
 <% include ../partials/head %>
 
-<main>
-  <div class="container">
+<!-- Wrap all page content here -->
+<div id="wrap">
+  
+<!-- Begin page content -->
+<div class="divider" id="section1"></div>
+  
+<!-- top container -->
+<div class="container">
+  <div class="col-sm-10 col-sm-offset-1">
+    
+    <div class="page-header text-center">
 
-    <% if(err) {
+      <!-- determine if error message should be displayed -->
+      <% if(err) {
+        err.forEach(function(errorMessage) {
+      %>
+        <!--  If an error occurred, create an error div and display the message. -->
+      <div class="error">
+        <%= errorMessage  %>
+      </div>
+      <% });// Ends the foreach loop
+      } // Ends the if statement
+      %>
 
-      err.forEach(function(errorMessage) {
-
-     %>
-      <!--  If an error occurred, create an error div and display the message. -->
-
-    <div class="error">
-      <%= errorMessage  %>
+      <h1>please sign up</h1>
+    
     </div>
-
-    <% });// Ends the foreach loop
-    } // Ends the if statement
-    %>
-    <h2>Please Sign Up</h2>
-    <form method="POST" action="/signup">
-      <input type="text" name="email" placeholder="Email"><br>
-      <input type="password" name="password" placeholder="Password*"><br>
-      <input type="text" name="name" placeholder="Name"><br>
-      <input type="text" name="username" placeholder="Pick a Username"><br>
-      <input type="text" name="location" placeholder="Where are you from?"><br>
-      <p>*Password must be between 6 and 16 characters</p>
-      <button>Sign Up</button>
+    
+    <!-- signup form -->
+    <form class="lead text-center" method="POST" action="/signup">
+      <input type="text" name="email" required="required" placeholder="Email"><br>
+      <input type="password" name="password" required="required" placeholder="Password*"><br>
+      <input type="text" name="name" required="required" placeholder="Name"><br>
+      <input type="text" name="username" required="required" placeholder="Pick a Username"><br>
+      <input type="text" name="location" required="required" placeholder="Where are you from?"><br>
+      <p id="password">*Password must be between 6 and 16 characters</p>
+      <button class="btn">Sign Up</button>
     </form>
-  </div>
-</main>
 
-  <% include ../partials/footer %>
+  </div>
+</div>
+    
+<div class="divider" id="section2"></div>
+
+<!-- bottom section with image and some text -->
+<section class="bg-3" id="section4">
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">join the create community</h2></div>
+</section>
+  
+</div><!--/wrap-->
+
+<% include ../partials/footer %>

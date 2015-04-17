@@ -4,16 +4,16 @@ module.exports = function(sequelize, DataTypes) {
     
     // contribution title
     title: DataTypes.STRING,
-    // ***ADDED THIS TO SEE IF IT WILL HELP WITH CREATING A CREATION WITH
-    // AN ASSOCIATED USER WITH IT***
-    UserId: DataTypes.STRING,
+
     //contribution content
     content: DataTypes.TEXT,
+
+    // contribution prompt
     prompt: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        // Creation association with User table
         this.belongsTo(models.User);
       }
     }

@@ -9,12 +9,13 @@
   
 <!-- Begin page content -->
 <div class="divider" id="section1"></div>
-  
+
+<!-- top container  -->
 <div class="container">
   <div class="col-sm-10 col-sm-offset-1">
+
     <div class="page-header text-center">
-      <!-- show Word of Day -->
-      <h1>creations</h1>
+      <h1 class="heading">creations</h1>
     </div>
     
     <p class="lead text-center">Explore our community's works!</p>
@@ -25,17 +26,18 @@
 <div class="divider" id="section2"></div>
   
 <section class="bg-1">
-
+  <!-- middle divider bg image -->
 </section>
   
 <div class="divider"></div>
    
+<!-- section looping through to list each creation's title and username -->
 <div class="container" id="section3">
     <div class="col-sm-8 col-sm">
       <div class="container">
         <% creationsList.forEach(function(creation) { %>
         <div>
-          <h2><a href="/creations/<%= creation.id %>"><strong><%= creation.title %> </strong></a><%= creation.User.username %></h2>
+          <p class="list"><a href="/creations/<%= creation.id %>"><strong><%= creation.title %> </strong></a><%= creation.User.username %></p>
         </div>
         <% }) %>
         <br><br>
@@ -44,9 +46,10 @@
 </div><!--/container-->
 
 <div class="divider"></div>
-  
+
+<!-- bottom section with image and some text -->
 <section class="bg-3" id="section4">
-  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">Join the create community</h2></div>
+  <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">join the create community</h2></div>
 </section>
   
 </div><!--/wrap-->
