@@ -40,7 +40,12 @@
         <h1 class="text-center">creations</h1>
         <br><br>
         <% creationsList.forEach(function(creation){ %>
-        <p class="list"><a href="/creations/<%= creation.id  %>"><%= creation.title  %></a></p><br>
+        <p class="list"><a href="/creations/<%= creation.id  %>"><%= creation.title  %></a></p>
+        
+        <!-- delete button -->
+        <form onclick="return confirm('Are you sure you want to delete?');" method="POST" action="/creations/<%= creation.id %>?_method=DELETE">
+          <button type="submit" id="delete" class="btn">Delete</button>
+        </form><br>
       <% }) %>
         <br><br>
       </div>

@@ -226,6 +226,16 @@ app.get('/creators/:id', function(req, res) {
     });
 });
 
+// delete post
+app.delete('/creations/:id', function(req,res) {
+  db.Creation.find(req.params.id).then(function(creations) {
+    creations.destroy()
+    .then(function() {
+      res.redirect('/profile');
+    })
+  })
+});
+
 // set server listening port
 app.listen(process.env.PORT || 3000, function () {
   console.log("SERVER RUNNING");
