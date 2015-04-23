@@ -16,35 +16,28 @@
 
     <div class="page-header text-center">
       <h1 class="heading">creations</h1>
+      <br>
+      <p class="lead text-center">Explore our community's works!</p>
     </div>
     
-    <p class="lead text-center">Explore our community's works!</p>
+    <!-- section looping through to list each creation's title and username -->
+    <br>
+    <div class="container" id="section3">
+        <div class="col-sm-8 col-sm">
+          <div class="container">
+            <% creationsList.forEach(function(creation) { %>
+            <div>
+              <p class="list"><a href="/creations/<%= creation.id %>"><strong><%= creation.title %> </strong></a><%= creation.User.username %></p>
+            </div>
+            <% }) %>
+            <br><br>
+          </div>
+        </div><!--/col-->
+    </div><!--/container-->
 
   </div>
 </div>
-    
-<div class="divider" id="section2"></div>
   
-<section class="bg-1">
-  <!-- middle divider bg image -->
-</section>
-  
-<div class="divider"></div>
-   
-<!-- section looping through to list each creation's title and username -->
-<div class="container" id="section3">
-    <div class="col-sm-8 col-sm">
-      <div class="container">
-        <% creationsList.forEach(function(creation) { %>
-        <div>
-          <p class="list"><a href="/creations/<%= creation.id %>"><strong><%= creation.title %> </strong></a><%= creation.User.username %></p>
-        </div>
-        <% }) %>
-        <br><br>
-      </div>
-    </div><!--/col-->
-</div><!--/container-->
-
 <div class="divider"></div>
 
 <!-- bottom section with image and some text -->

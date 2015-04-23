@@ -13,40 +13,36 @@
 <div class="container">
   <div class="col-sm-10 col-sm-offset-1">
     <div class="page-header text-center">
-      <!-- show Word of Day -->
+      <!-- show "creators" heading -->
       <h1 class="heading">creators</h1>
+      <br>
+      <p class="lead text-center">Explore our community of creators!</p>
     </div>
     
-    <p class="lead text-center">Explore our community of creators!</p>
+    <!-- list each creator and link to their profile -->
+    <br>
+    <div class="container" id="section3">
+        <div class="col-sm-8 col-sm">
+          <div class="container">
+            <% ejsUsers.forEach(function(user) { %>
+                <div>
+                  <p "list"><a href="/creators/<%= user.id %>"><strong><%= user.username %></strong></a>
+                  <%= user.name %></p>
+                  <br>
+                </div>
+                <% }) %>
+            <br><br>
+          </div>
+        </div><!--/col-->
+    </div><!--/container-->
 
   </div>
 </div>
     
-<div class="divider" id="section2"></div>
-  
-<section class="bg-1">
-
-</section>
-  
-<div class="divider"></div>
-   
-<div class="container" id="section3">
-    <div class="col-sm-8 col-sm">
-      <div class="container">
-        <% ejsUsers.forEach(function(user) { %>
-            <div>
-              <p "list"><a href="/creators/<%= user.id %>"><strong><%= user.username %></strong></a>
-              <%= user.name %></p>
-              <br>
-            </div>
-            <% }) %>
-        <br><br>
-      </div>
-    </div><!--/col-->
-</div><!--/container-->
-
 <div class="divider"></div>
   
+<!-- bottom section with image and some text -->
+
 <section class="bg-3" id="section4">
   <div class="col-sm-6 col-sm-offset-3 text-center"><h2 style="padding:20px;background-color:rgba(5,5,5,.8)">join the create community</h2></div>
 </section>
