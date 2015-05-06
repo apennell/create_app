@@ -14,9 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: 'super secret',
   resave: false,
-  save: {
-    uninitialize: true
-  }
+  saveUninitialized: true
 }));
 
 // var to hide api key
@@ -52,8 +50,13 @@ app.use(express.static(__dirname + '/public'));
 // index/front page
 app.get('/', function(req,res) {
   // Word of the Day API
-  request('http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + api_key, function (error, response, body) {
+  console.log("running");
+  var url = 'http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + api_key;
+
+  request(url, function (error, response, body) {
+    console.log("running also");
     if (!error && response.statusCode == 200) {
+      console.log("running 3");
       var jsonData = JSON.parse(body);
       console.log(jsonData);
       res.render("site/index.ejs", {jsonData: jsonData});
@@ -80,7 +83,7 @@ app.get('/signup', function (req, res) {
   var err = req.query.err || false;
 
   // Render the signup page and pass the value set to err.
-  if(err !== false) {
+  if (err !== false) {
     res.render('users/signup', { err: err.split(":") });
   } else {
     res.render('users/signup', { err: false});
@@ -156,8 +159,7 @@ app.delete('/logout', function(req,res){
 // show creations index page that lists all contributions
 app.get('/creations', function(req,res) {
   // find all the creations
-  db.Creation.findAll(
-    {include: [db.User]})
+  db.Creation.findAll({include: [db.User]})
     .then(function(creations) {
     // render the article index template with articlesList, containing articles
     res.render('creations/index', {creationsList: creations});
