@@ -104,7 +104,7 @@ header {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height:425px;
+  height:325px;
   color:#000000;
 }
 
@@ -247,6 +247,26 @@ header h3 {
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
+  background-color: #E0583D;
+  color: #2e2e2e;
+}
+
+.btn:hover {
+  background-color: #DE4426;
+}
+
+a {
+  color: #2e2e2e;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #E0583D;
+}
+
+.button-link:hover {
+  text-decoration: none;
+  color: #2e2e2e;
 }
 
 #logout {
