@@ -17,6 +17,7 @@
 <header class="masthead">
     <div class="container">
     <div class="row">
+      <img src="http://i.imgur.com/ZWAuvoK.png" title="source: imgur.com" id="logo"/>
     </div>
     </div>
 </header>
@@ -37,17 +38,20 @@
           <li><a href="/creations">CREATIONS</a></li>
           <li><a href="/creators">CREATORS</a></li>
           <li><a href="/creations/new">CONTRIBUTE</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ACCOUNT <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="/profile">PROFILE</a></li>
-              <li><a href="/login">SIGN IN</a></li>
-              <li><a href="/signup">REGISTER</a></li>
-              <li>
-                <form method='POST' action='/logout?_method=DELETE'>
-                <button class="btn" id="logout">SIGN OUT</button>
-                </form>
-              </li>
+          <% if(!loggedIn) { %>
+            <li><a href="/login">SIGN IN</a></li>
+            <li><a href="/signup">REGISTER</a></li>
+          <% } else { %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">ACCOUNT <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/profile">PROFILE</a></li>
+                <li>
+                  <form method='POST' action='/logout?_method=DELETE'>
+                  <button class="btn" id="logout">SIGN OUT</button>
+                  </form>
+                </li>
+            <% } %>
             </ul>
           </li>
         </ul>

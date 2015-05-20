@@ -49,9 +49,12 @@ app.use(express.static(__dirname + '/public'));
 
 // index/front page
 app.get('/', function(req,res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   // Word of the Day API
   console.log("running");
   var url = 'http://api.wordnik.com:80/v4/words.json/wordOfTheDay?api_key=' + api_key;
+  console.log(url);
 
   request(url, function (error, response, body) {
     console.log("running also");
@@ -59,39 +62,47 @@ app.get('/', function(req,res) {
       console.log("running 3");
       var jsonData = JSON.parse(body);
       console.log(jsonData);
-      res.render("site/index.ejs", {jsonData: jsonData});
+      res.render("site/index.ejs", {jsonData: jsonData, loggedIn: loggedIn});
+    } else {
+      res.send("Something went wrong. Sorry!");
     }
   });
 });
 
 // login view route
 app.get('/login', function (req, res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   req.currentUser().then(function(user) {
     if (user) {
       // if the user exists, redirect to their profile
       res.redirect('/profile');
     } else {
       // if there was a login error, redirect back to login page
-      res.render('users/login');
+      res.render('users/login', {loggedIn: loggedIn});
     }
   });
 });
 
 // sign up page
 app.get('/signup', function (req, res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   // Define a variable error to be either an error that was passed as a query parameter, or false.
   var err = req.query.err || false;
 
   // Render the signup page and pass the value set to err.
   if (err !== false) {
-    res.render('users/signup', { err: err.split(":") });
+    res.render('users/signup', { err: err.split(":"), loggedIn: loggedIn });
   } else {
-    res.render('users/signup', { err: false});
+    res.render('users/signup', { err: false, loggedIn: loggedIn});
   }
 });
 
 // show user's profile page
 app.get('/profile', function(req,res){
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   req.currentUser()
     .then(function(dbUser) {
     if (dbUser) {
@@ -99,7 +110,7 @@ app.get('/profile', function(req,res){
       db.Creation.findAll({where: {UserId: dbUser.id}})
       .then(function(creations) {
         // get the user info and their creations 
-        res.render('users/profile', {ejsUser: dbUser, creationsList: creations});
+        res.render('users/profile', {ejsUser: dbUser, creationsList: creations, loggedIn: loggedIn});
           });
     } else {
       // if there isn't a user logged in, redirect to the login page
@@ -158,22 +169,26 @@ app.delete('/logout', function(req,res){
 
 // show creations index page that lists all contributions
 app.get('/creations', function(req,res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   // find all the creations
   db.Creation.findAll({include: [db.User]})
     .then(function(creations) {
     // render the article index template with articlesList, containing articles
-    res.render('creations/index', {creationsList: creations});
+    res.render('creations/index', {creationsList: creations, loggedIn: loggedIn});
     });
 });
 
 // new creation page
 app.get('/creations/new', function(req,res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   db.User.all().then(function(user) {
     req.currentUser().then(function(dbUser) {
       // if user is logged in, render new creation page
       if (dbUser) {
         res.render('creations/new', {
-          Users: user});
+          Users: user, loggedIn: loggedIn});
       } else {
         // redirect to login page if user isn't logged in
         res.redirect('/login');
@@ -199,32 +214,38 @@ app.post('/creations', function(req,res) {
 
 // show individual creation page
 app.get('/creations/:id', function(req, res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   // finds creations in the Creation table by its id number; also gets user info to display
   db.Creation.find({where: {id: req.params.id}, include: db.User})
     .then(function(creation) {
       // get creation for rendering
       res.render('creations/creation', {
-        creationToDisplay: creation});
+        creationToDisplay: creation, loggedIn: loggedIn});
     });
 });
 
 // show creators index page with all creators
 app.get('/creators', function(req, res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   // finds all creators in User db to display
   db.User.findAll()
     .then(function(users) {
       // get all the users from table for rendering
-      res.render('creators/index', {ejsUsers: users});
+      res.render('creators/index', {ejsUsers: users, loggedIn: loggedIn});
     });
 });
 
 // show creator profile page with all creations and info
 app.get('/creators/:id', function(req, res) {
+  // set var if user is logged in to use when setting status of navbar
+  var loggedIn = req.session.userId;
   // finds specific user from User table based on id number; also gets creation info to display
   db.User.find({where: {id: req.params.id}, include: db.Creation})
     .then(function(user) {
       // get creation for rendering
-      res.render('creators/creator.ejs', {ejsUser: user});
+      res.render('creators/creator.ejs', {ejsUser: user, loggedIn: loggedIn});
     });
 });
 

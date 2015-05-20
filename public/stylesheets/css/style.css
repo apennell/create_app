@@ -7,7 +7,7 @@ body {
   /* The html and body elements cannot have any padding or margin. */
   -webkit-font-smoothing: antialiased;
   font-family: 'Open+Sans', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .row {
@@ -53,6 +53,7 @@ body {
 
 h1 {
   font-family: 'Pacifico', cursive;
+  font-size: 40px;
 }
 
 h3,h4 {
@@ -62,26 +63,26 @@ h3,h4 {
 
 h2 {
   font-family: 'Pacifico', cursive;
-  font-size: 40px;
+  font-size: 35px;
 }
 
 #word-of-day {
   font-family: 'Open+Sans', sans-serif;
-  font-size: 75px;
+  font-size: 60px;
   font-weight: 400;
 }
 
 .list {
   font-family: 'Open+Sans', sans-serif;
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .heading {
-  font-size: 100px;
+  font-size: 60px;
 }
 
 .lead {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #password {
@@ -93,17 +94,24 @@ h2 {
 }
 
 #username {
-  font-size: 70px;
+  font-size: 60px;
 }
 
 header {
-  background: url('http://i.imgur.com/gwnIjhG.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  height:550px;
+  /*background: url('http://i.imgur.com/gwnIjhG.jpg') no-repeat center center fixed; */
+  background: #E0583D;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:425px;
   color:#000000;
+}
+
+#logo {
+  opacity: 0.9;
+  height: 175px;
+  margin-top: 30px;
 }
 
 header h1,header h2,header h3 a,header a,header a:hover {
@@ -114,15 +122,11 @@ header h1,header h2,header h3 a,header a,header a:hover {
 
 header h3 {
   font-family: 'Open+Sans', sans-serif;
-  background: #ffcc33;
+  background: #d16371;
   padding:10px;
   border-radius:3px;
   font-size:34px;
   padding:12px 10px 6px 10px;
-}
-
-h1 {
-  font-size:50px;
 }
 
 #nav {
@@ -152,7 +156,8 @@ h1 {
   background-color: #2e2e2e;
   font-weight:400;
   border-width:0;
-  font-size: 20px;
+  font-size: 15px;
+  border-width:0;
 }
 .navbar-custom  .navbar-nav>li>a {
   color: #ddd;
@@ -162,7 +167,7 @@ h1 {
 }
 .navbar-custom .dropdown-menu{
   right:0;
-  font-size: 18px;
+  font-size: 14px;
 }
 .navbar-custom .navbar-nav>.dropdown>a .caret {
   border-top-color: #999;
@@ -183,7 +188,7 @@ h1 {
 #cursive-nav {
   font-family: 'Pacifico', cursive;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .divider {
@@ -197,6 +202,11 @@ h1 {
 @media (max-width: 768px) {
   header {
     height: 95px;
+  }
+
+  #logo {
+    height: 80px;
+    margin-top: 8px;
   }
 }
 
@@ -234,7 +244,7 @@ h1 {
   background-color: white;
   padding: 5px 19px 0 19px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 section {
