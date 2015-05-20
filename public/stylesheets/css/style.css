@@ -162,8 +162,17 @@ header h3 {
 .navbar-custom  .navbar-nav>li>a {
   color: #ddd;
 }
-.navbar-custom  .navbar-nav li>a:hover, .navbar-nav li .open, .navbar-custom .navbar-nav .active a  {
+
+/* create item in navbar */
+.navbar-custom  .navbar-nav li#cursive-nav>a:hover, .navbar-nav li#cursive-nav .open, .navbar-custom .navbar-nav .active a  {
   background-color: #000;
+  padding-bottom: 21px;
+}
+
+/* other items in navbar */
+.navbar-custom  .navbar-nav li.reg-nav>a:hover, .navbar-nav li.reg-nav .open, .navbar-custom .navbar-nav .active a  {
+  background-color: #000;
+  padding-top: 21px;
 }
 .navbar-custom .dropdown-menu{
   right:0;
@@ -177,7 +186,7 @@ header h3 {
   border-top: 8px solid #999;
 }
 
-.navbar-collapse.in { /*3.0.2 bug workaround*/
+.navbar-collapse.in { 3.0.2 bug workaround
   overflow-y: visible;
 }
 
