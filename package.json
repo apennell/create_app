@@ -15,7 +15,7 @@
     "env": "0.0.2",
     "express": "^4.12.3",
     "express-session": "^1.11.1",
-    "lodash": "^3.6.0",
+    "lodash": "^4.17.19",
     "method-override": "^2.3.2",
     "pg": "^4.3.0",
     "pg-hstore": "^2.3.2",
